@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clients</title>
+    <script>
+        function edit(element) {
+            console.log("row" + element.parentNode.parentNode.rowIndex);
+            let r = element.parentNode.parentNode.rowIndex
+            
+            
+            let id = document.getElementById('tableListClients').rows[r].cells[0].children[0].value
+            let cin = document.getElementById('tableListClients').rows[r].cells[1].value
+            let nom = document.getElementById('tableListClients').rows[r].cells[2].value
+            let prenom = document.getElementById('tableListClients').rows[r].cells[3].value
+            let tel = document.getElementById('tableListClients').rows[r].cells[4].value
+
+            
+            document.getElementById('id').innerHTML=id
+            document.getElementById('cin').innerHTML=cin
+            document.getElementById('nom').innerHTML=nom
+            document.getElementById('prenom').innerHTML=prenom
+            document.getElementById('tel').innerHTML=tel
+
+        }
+    </script>
+    <style>
+        th {
+            background-color: grey;
+        }
+
+        td {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Liste des Clients</h1>
+    <table id="tableListClients">
+        <!-- tr ,table row ,ligne -->
+        <tr>
+
+            <th>id</th>
+            <th>cin</th>
+            <th>nom</th>
+            <th>prenom</th>
+            <th>tel</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+
+
+
+        <% for(var i=0; i<listLength; i++) {%>
+        <!-- <form action="/clients/delete" method="post"> -->
+        <tr>
+            <td>
+                <input type="text" name="idValue" value="<%=list[i].id%>">
+                </input>
+            </td>
+            <td>
+                <%= list[i].cin%>
+            </td>
+            <td>
+                <%= list[i].nom%>
+            </td>
+            <td>
+                <%= list[i].prenom%>
+            </td>
+            <td>
+                <%= list[i].tel%>
+            </td>
+            <td>
+                <input type="submit" value="Delete">
+            </td>
+
+
+            <td>
+                <button onclick="edit(this); return false;">Edit</button>
+            </td>
+        </tr>
+        <!-- </form> -->
+        <% } %>
+
+    </table>
+
+    <hr>
+    <h1>Formulaire Insertion</h1>
+    </br>
+
+    <form action="/clients/upsert" method="post">
+        <table id="tableInsertion">
+
+            <tr>
+                <td>id </td>
+                <td> <input type="text" name="id"  id="id" >8888888888</td>
+            </tr>
+            <tr>
+                <td>cin </td>
+                <td> <input type="text" name="cin"  id="cin" ></td>
+            </tr>
+            <tr>
+                <td>nom </td>
+                <td> <input type="text" name="nom"  id="nom"></td>
+            </tr>
+            <tr>
+                <td>prenom </td>
+                <td> <input type="text" name="prenom"  id="prenom"></td>
+            </tr>
+            <tr>
+                <td>tel </td>
+                <td> <input type="text" name="tel"  id="tel"></td>
+            </tr>
+        </table>
+
+        <input type="submit">
+        <input type="reset">
+    </form>
+</body>
+
+</html>
